@@ -1,0 +1,3 @@
+version=3
+opts="uversionmangle=s/1(.*)/1.$1/" \
+http://www.winimage.com/zLibDll/minizip.html unzip(1.*).zip

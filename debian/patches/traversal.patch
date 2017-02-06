@@ -1,0 +1,16 @@
+description: fix directory traversal issue in miniunzip
+author: Michael Gilbert <mgilbert@debian.org>
+Bug-Debian: https://bugs.debian.org/774321
+
+--- a/miniunz.c
++++ b/miniunz.c
+@@ -354,6 +354,9 @@ int do_extract_currentfile(uf,popt_extra
+         else
+             write_filename = filename_withoutpath;
+ 
++        while (write_filename[0]=='/' || write_filename[0]=='.')
++            write_filename++;
++
+         err = unzOpenCurrentFilePassword(uf,password);
+         if (err!=UNZ_OK)
+         {
